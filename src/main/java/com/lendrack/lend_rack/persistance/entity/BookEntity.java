@@ -26,8 +26,10 @@ public class BookEntity {
     @Column(unique = true)
     private String slug;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", nullable = false)
     @Setter
-    private Long author_id;
+    private AuthorEntity author;
 
     @Setter
     private Long publisher_id;

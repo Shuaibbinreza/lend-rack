@@ -189,40 +189,18 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4" th:each="book : ${books}">
                 <div class="card book-card fade-in">
-                    <div class="book-cover" th:classappend="">
+                    <div class="book-cover">
                         <i class="bi bi-book"></i>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title fw-bold mb-2" >Book Title</h5>
-                        <p class="card-text text-muted mb-2" >by Author</p>
-                        
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="badge bg-light text-dark" >Genre</span>
-                            <small class="text-muted" >Year</small>
-                        </div>
+                        <h5 class="card-title fw-bold mb-2" th:text="${book.title}">Book Title</h5>
+                        <p class="card-text text-muted mb-2" th:text="${book.author_id}">by Author</p>
+                        <p class="card-text text-muted mb-2" th:text="${book.category_id}">by Author</p>
 
-                        <!-- <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="rating-stars">
-                                <span th:if="" class="text-muted small">Not rated</span>
-                                <span th:if="">
-                                    <i class="bi bi-star-fill" th:each="i : ${#numbers.sequence(1, book.rating)}"></i>
-                                    <i class="bi bi-star" th:each="i : ${#numbers.sequence(1, 5 - book.rating)}"></i>
-                                </span>
-                            </div>
-                            <span class="status-badge"
-                                  th:classappend="' status-' + ${book.status.toLowerCase().replace(' ', '-')} "
-                                  th:text="${book.status}">Status</span>
-                        </div> -->
-
-                        <p class="card-text small text-muted mb-3"
-                           style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"
-                           th:text="${book.note}">Book note or description.</p>
-
-                        <div class="text-center">
-                            <a th:href="@{/manage/{id}(id=${book.id})}" class="btn btn-outline-primary btn-sm">
-                                <i class="bi bi-gear me-1"></i>Manage This Book
-                            </a>
-                        </div>
+<!--                        <div class="d-flex justify-content-between align-items-center mb-2 bg-danger">-->
+                            <span class="badge bg-light text-dark" th:text="${book.category_id}">Genre</span>
+                            <small class="text-muted" th:text="${book.title}">Year</small>
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

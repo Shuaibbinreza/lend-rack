@@ -32,4 +32,8 @@ public class AuthorEntity {
 
     @Setter
     private String nationality;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter
+    private java.util.List<BookEntity> books;
 }

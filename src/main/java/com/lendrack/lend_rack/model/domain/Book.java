@@ -22,5 +22,7 @@ public class Book {
     private Long language_id;
     private String description;
     private int page_count;
+    private String authorName;
+    Author author;
 
 }
