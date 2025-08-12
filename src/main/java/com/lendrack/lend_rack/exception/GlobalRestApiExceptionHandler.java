@@ -12,11 +12,11 @@ import org.springframework.web.context.request.WebRequest;
 @RestControllerAdvice
 public class GlobalRestApiExceptionHandler {
     @ExceptionHandler(Exception.class)
-    public ProblemDetail handleNotFoundException(NotFoundException e, WebRequest request) {
-        log.error("Resource Not Found {}", e.getMessage());
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
-        problemDetail.setDetail("Resource Not Found");
-        problemDetail.setStatus(HttpStatus.NOT_FOUND);
+    public ProblemDetail handleNotFoundException(Exception e, WebRequest request) {
+        log.error("Error: {}", e.getMessage());
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+        problemDetail.setDetail("An error occurred");
+        problemDetail.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         return problemDetail;
     }
 }
