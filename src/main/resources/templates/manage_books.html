@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Books - BookVault</title>
+    <link th:href="@{/main.css}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<!-- Navigation -->
+<nav class="bg-blue-600 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 flex items-center justify-between h-16">
+        <a class="flex items-center text-white font-bold text-xl" th:href="@{/}">
+            <i class="bi bi-book-half mr-2"></i>BookVault
+        </a>
+
+        <!-- Links -->
+        <div class="hidden md:flex space-x-6">
+            <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/}">
+                <i class="bi bi-house mr-1"></i>Home
+            </a>
+            <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/manage-books}">
+                <i class="bi bi-gear mr-1"></i>Manage
+            </a>
+            <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/favorites}">
+                <i class="bi bi-heart mr-1"></i>Favorites
+            </a>
+            <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/statistics}">
+                <i class="bi bi-graph-up mr-1"></i>Statistics
+            </a>
+        </div>
+
+
+        <!-- Profile Dropdown -->
+        <div class="relative">
+            <button class="flex items-center text-white hover:bg-blue-700 px-3 py-2 rounded-lg"
+                    onclick="document.getElementById('profileDropdown').classList.toggle('hidden')">
+                <i class="bi bi-person-circle mr-2 text-lg"></i>
+                <span class="hidden md:inline">Profile</span>
+            </button>
+            <ul id="profileDropdown" class="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg hidden">
+                <li class="px-4 py-3 border-b flex items-center space-x-2">
+                    <i class="bi bi-person-circle text-2xl"></i>
+                    <div>
+                        <p class="font-semibold">John Doe</p>
+                        <p class="text-sm text-gray-500">john.doe@email.com</p>
+                    </div>
+                </li>
+                <li><a class="block px-4 py-2 hover:bg-gray-100" th:href="@{/profile}">My Profile</a></li>
+                <li><a class="block px-4 py-2 hover:bg-gray-100" th:href="@{/account-settings}">Account Settings</a></li>
+                <li><a class="block px-4 py-2 hover:bg-gray-100" th:href="@{/reading-lists}">Reading Lists</a></li>
+                <li><a class="block px-4 py-2 hover:bg-gray-100" th:href="@{/reading-history}">Reading History</a></li>
+                <li><hr class="border-gray-200"></li>
+                <li><a class="block px-4 py-2 hover:bg-gray-100" th:href="@{/help}">Help & Support</a></li>
+                <li><a class="block px-4 py-2 hover:bg-gray-100" th:href="@{/privacy}">Privacy Settings</a></li>
+                <li><hr class="border-gray-200"></li>
+                <li><a class="block px-4 py-2 text-red-600 hover:bg-gray-100" th:href="@{/logout}">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+
+</html>

@@ -12,19 +12,31 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+//    @Bean
+//    public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .securityMatcher("/**")
+//                .authorizeHttpRequests(requests -> requests
+//                        .anyRequest().authenticated() // all requests need auth
+//                )
+//                .formLogin(Customizer.withDefaults()) // use default login page
+//                .logout(logout -> logout.permitAll());
+//
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/**")
-                .authorizeHttpRequests(requests -> requests
-                        .anyRequest().authenticated() // all requests need auth
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/manage-books/**").authenticated()
+                        .anyRequest().permitAll()
                 )
-                .formLogin(Customizer.withDefaults()) // use default login page
+                .formLogin(Customizer.withDefaults())
                 .logout(logout -> logout.permitAll());
 
         return http.build();
     }
-
 
     @Bean
     public UserDetailsService userDetailsService() {
