@@ -3,6 +3,8 @@ package com.lendrack.lend_rack.persistance.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,11 +33,21 @@ public class BookEntity {
     @Setter
     private AuthorEntity author;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @CreatedDate
+    @Column(updatable = false)
     @Setter
-    private Long publisher_id;
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Setter
+    private LocalDateTime updatedAt;
 
     @Setter
-    private LocalDateTime addedAt;
+    private Long publisher_id;
 
     @Setter
     private Long category_id;

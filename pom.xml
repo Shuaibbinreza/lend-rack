@@ -37,6 +37,10 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -63,6 +67,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
 
 		<!-- 3rd Party Dependencies -->
@@ -128,7 +136,7 @@
 						</configuration>
 					</execution>
 
-					<execution>
+					<!-- <execution>
 						<id>npm install</id>
 						<goals>
 							<goal>npm</goal>
@@ -137,9 +145,9 @@
 						<configuration>
 							<arguments>install</arguments>
 						</configuration>
-					</execution>
+					</execution> -->
 
-					<execution>
+					<!-- <execution>
 						<id>npm build</id>
 						<goals>
 							<goal>npm</goal>
@@ -148,7 +156,7 @@
 						<configuration>
 							<arguments>run build</arguments>
 						</configuration>
-					</execution>
+					</execution> -->
 
 				</executions>
 				<configuration>
