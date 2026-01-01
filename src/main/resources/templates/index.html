@@ -22,9 +22,15 @@
             <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/}">
                 <i class="bi bi-house mr-1"></i>Home
             </a>
-            <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/manage-books}">
-                <i class="bi bi-gear mr-1"></i>Manage
-            </a>
+            <div class="relative">
+                <button class="text-white hover:text-gray-200 flex items-center" onclick="document.getElementById('manageDropdown').classList.toggle('hidden')">
+                    <i class="bi bi-gear mr-1"></i>Manage <i class="bi bi-chevron-down ml-1"></i>
+                </button>
+                <ul id="manageDropdown" class="absolute left-0 mt-2 w-48 bg-white border rounded-lg shadow-lg hidden">
+                    <li><a class="block px-4 py-2 hover:bg-gray-100" th:href="@{/books/manage-books/all}">Manage Books</a></li>
+                    <li><a class="block px-4 py-2 hover:bg-gray-100" th:href="@{/collections/manage-collections/all}">Manage Collections</a></li>
+                </ul>
+            </div>
             <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/favorites}">
                 <i class="bi bi-heart mr-1"></i>Favorites
             </a>
@@ -72,9 +78,14 @@
             <h1 class="text-3xl font-bold text-blue-600">My Library</h1>
             <p class="text-gray-500">6 books in your collection</p>
         </div>
-        <a th:href="@{/books/manage-books/all}" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
-            <i class="bi bi-gear mr-2"></i>Manage Books
-        </a>
+        <div class="flex gap-3">
+            <a th:href="@{/books/manage-books/all}" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
+                <i class="bi bi-gear mr-2"></i>Manage Books
+            </a>
+            <a th:href="@{/collections/manage-collections/all}" class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700">
+                <i class="bi bi-collection mr-2"></i>Manage Collections
+            </a>
+        </div>
     </div>
 
     <!-- Search and Filter Section -->
@@ -158,9 +169,14 @@
 <!-- Toggle Dropdown Script -->
 <script>
     document.addEventListener("click", function(e) {
-        const dropdown = document.getElementById("profileDropdown");
-        if (!e.target.closest("button") && !e.target.closest("#profileDropdown")) {
-            dropdown.classList.add("hidden");
+        const profileDropdown = document.getElementById("profileDropdown");
+        const manageDropdown = document.getElementById("manageDropdown");
+        
+        if (!e.target.closest('button[onclick*="profileDropdown"]') && !e.target.closest("#profileDropdown")) {
+            profileDropdown.classList.add("hidden");
+        }
+        if (!e.target.closest('button[onclick*="manageDropdown"]') && !e.target.closest("#manageDropdown")) {
+            manageDropdown.classList.add("hidden");
         }
     });
 </script>

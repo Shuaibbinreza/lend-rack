@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.lendrack.lend_rack.service.CustomOAuth2UserService;
 import com.lendrack.lend_rack.service.CustomUserDetailsService;
 
 @Configuration
@@ -15,7 +14,6 @@ import com.lendrack.lend_rack.service.CustomUserDetailsService;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomUserDetailsService customUserDetailsService;
 
     @Bean
@@ -31,13 +29,6 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .userDetailsService(customUserDetailsService)
-                .oauth2Login(oauth -> oauth
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
-                        .userInfoEndpoint(userInfo -> userInfo
-                                .userService(customOAuth2UserService)
-                        )
-                )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login")
                         .permitAll()

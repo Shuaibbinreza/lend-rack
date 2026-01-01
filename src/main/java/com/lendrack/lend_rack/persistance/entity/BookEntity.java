@@ -44,6 +44,9 @@ public class BookEntity {
     private Long language_id;
 
     @Setter
+    private Long collection_id;
+
+    @Setter
     private String description;
 
     @Setter
