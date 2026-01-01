@@ -18,7 +18,7 @@ public class BookMapper {
 //        book.setTitle(bookEntity.getTitle());
 //        book.setDescription(bookEntity.getDescription());
         if (bookEntity.getAuthor() != null) {
-            book.setAuthorName(bookEntity.getAuthor().getFullName());
+            book.setAuthorName(bookEntity.getAuthor());
         }
         return book;
     }
@@ -32,7 +32,8 @@ public class BookMapper {
     public BookEntity createRequestToEntity(CreateBookRequest request) {
         BookEntity bookEntity = new BookEntity();
         bookEntity.setTitle(request.title());
-        bookEntity.setPublisher_id(request.publisher_id());
+        bookEntity.setAuthor(request.author());
+        bookEntity.setPublisher(request.publisher());
         bookEntity.setCategory_id(request.category_id());
         bookEntity.setLanguage_id(request.language_id());
         bookEntity.setDescription(request.description());
@@ -47,7 +48,7 @@ public class BookMapper {
         bookEntity.setDescription(request.description());
         bookEntity.setTitle(request.title());
 //        bookEntity.setAuthor_id(request.author_id());
-        bookEntity.setPublisher_id(request.publisher_id());
+        // bookEntity.setPublisher_id(request.publisher_id()); // TODO: update when needed
         return bookEntity;
     }
 }

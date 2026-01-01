@@ -26,13 +26,11 @@ public class BookEntity {
     @Column(unique = true)
     private String slug;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", nullable = false)
     @Setter
-    private AuthorEntity author;
+    private String author;
 
     @Setter
-    private Long publisher_id;
+    private String publisher;
 
     @Setter
     private LocalDateTime addedAt;

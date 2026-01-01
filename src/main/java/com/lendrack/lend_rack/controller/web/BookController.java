@@ -13,10 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-import com.lendrack.lend_rack.model.domain.Author;
 import com.lendrack.lend_rack.model.domain.Book;
 import com.lendrack.lend_rack.model.dto.CreateBookRequest;
-import com.lendrack.lend_rack.service.AuthorService;
 import com.lendrack.lend_rack.service.BookService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/books")
 public class BookController {
     private final BookService bookService;
-    private final AuthorService authorService;
 
     @GetMapping
     public String index(Model model) {
@@ -46,10 +43,7 @@ public class BookController {
 
     @GetMapping("manage-books/create")
     public String createBookForm(Model model) {
-        Pageable pageable = PageRequest.of(0, 100, Sort.Direction.ASC, "name");
-        List<Author> authors = authorService.findAllAuthors(pageable);
-        model.addAttribute("authors", authors);
-        model.addAttribute("book", new CreateBookRequest("", 0L, null, null, null, "", 0));
+        model.addAttribute("book", new CreateBookRequest("", "", null, null, null, "", 0));
         return "create_book";
     }
 
