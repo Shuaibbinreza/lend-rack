@@ -22,8 +22,11 @@
             <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/}">
                 <i class="bi bi-house mr-1"></i>Home
             </a>
-            <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/manage-books}">
-                <i class="bi bi-gear mr-1"></i>Manage
+            <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/books/manage-books/all}">
+                <i class="bi bi-book mr-1"></i>Manage Books
+            </a>
+            <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/collections/manage-collections/all}">
+                <i class="bi bi-collection mr-1"></i>Manage Collections
             </a>
             <a class="text-white hover:text-gray-200 flex items-center" th:href="@{/favorites}">
                 <i class="bi bi-heart mr-1"></i>Favorites
@@ -66,7 +69,13 @@
 <!-- Main Content -->
 <div class="container mx-auto px-4 py-8">
     <div class="bg-white rounded-lg shadow-md p-6">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Manage Books</h1>
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">Manage Books</h1>
+            <a th:href="@{/books/manage-books/create}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
+                <i class="bi bi-plus mr-2"></i>Add Book
+            </a>
+        </div>
+        <div th:if="${message}" th:text="${message}" class="mb-4 p-4 bg-green-100 text-green-800 rounded-lg"></div>
 
         <div class="overflow-x-auto">
             <table class="min-w-full table-auto border-collapse border border-gray-300">
