@@ -1,7 +1,6 @@
 package com.lendrack.lend_rack.persistance.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.lendrack.lend_rack.persistance.entity.User;
 
 import java.util.Optional;

@@ -3,7 +3,7 @@ package com.lendrack.lend_rack.controller.web;
 import com.lendrack.lend_rack.model.domain.Book;
 import com.lendrack.lend_rack.persistance.entity.User;
 import com.lendrack.lend_rack.service.BookService;
-import com.lendrack.lend_rack.service.auth.UserService;
+import com.lendrack.lend_rack.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -23,15 +23,15 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class RootController {
-    private final BookService bookService;
+    // private final BookService bookService;
 
-     @GetMapping("/books")
-     public String index(Model model) {
-         Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "id");
-         List<Book> books = bookService.getAllBooks(pageable);
-         model.addAttribute("books", books);
-         return "index";
-     }
+    // @GetMapping("/")
+    // public String index(Model model) {
+    //     Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "id");
+    //     List<Book> books = bookService.getAllBooks(pageable);
+    //     model.addAttribute("books", books);
+    //     return "index";
+    // }
 
     // @GetMapping("manage-books/all")
     // public String manageBooks(Model model) {
@@ -43,9 +43,6 @@ public class RootController {
 
     private final UserService userService;
 
-    // public RootController(UserService userService) {
-    //     this.userService = userService;
-    // }
     @GetMapping("/")
     public String home(@AuthenticationPrincipal Object principal, Model model) {
         String name = "User";
