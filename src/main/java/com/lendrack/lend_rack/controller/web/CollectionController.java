@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.core.Authentication;
 
 import com.lendrack.lend_rack.exception.custom.NotFoundException;
 import com.lendrack.lend_rack.model.domain.Collection;
 import com.lendrack.lend_rack.model.dto.CreateCollectionRequest;
 import com.lendrack.lend_rack.model.dto.UpdateCollectionRequest;
+import com.lendrack.lend_rack.persistance.entity.User;
 import com.lendrack.lend_rack.service.CollectionService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,13 +38,14 @@ public class CollectionController {
 
     @GetMapping("collections/manage-collections/create")
     public String createCollectionForm(Model model) {
-        model.addAttribute("collection", new CreateCollectionRequest("", "", 1L));
+        model.addAttribute("collection", new CreateCollectionRequest("", "", null));
         return "create_collection";
     }
 
     @PostMapping("collections/manage-collections/create")
-    public String createCollection(@ModelAttribute("collection") CreateCollectionRequest request, RedirectAttributes redirectAttributes) {
-        CreateCollectionRequest req = new CreateCollectionRequest(request.collection_name(), request.location(), 1L);
+    public String createCollection(@ModelAttribute("collection") CreateCollectionRequest request, Authentication authentication, RedirectAttributes redirectAttributes) {
+        User currentUser = (User) authentication.getPrincipal();
+        CreateCollectionRequest req = new CreateCollectionRequest(request.collection_name(), request.location(), currentUser.getId());
         collectionService.create(req);
         redirectAttributes.addFlashAttribute("message", "Collection created successfully");
         return "redirect:/collections/manage-collections/all";
