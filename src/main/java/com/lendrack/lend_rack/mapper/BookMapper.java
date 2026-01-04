@@ -48,7 +48,8 @@ public class BookMapper {
     public BookEntity udateRequestToEntity(UpdateBookRequest request, BookEntity bookEntity) {
         bookEntity.setDescription(request.description());
         bookEntity.setTitle(request.title());
-//        bookEntity.setAuthor_id(request.author_id());
+        bookEntity.setCollection_id(request.collection_id());
+        // bookEntity.setAuthor_id(request.author_id());
         // bookEntity.setPublisher_id(request.publisher_id()); // TODO: update when needed
         return bookEntity;
     }

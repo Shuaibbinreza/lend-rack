@@ -20,6 +20,7 @@ public class Book {
     private LocalDateTime addedAt;
     private Long category_id;
     private Long language_id;
+    private Long collection_id;
     private String description;
     private int page_count;
     private String authorName;

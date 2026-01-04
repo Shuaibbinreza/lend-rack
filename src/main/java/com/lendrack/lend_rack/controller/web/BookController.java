@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import com.lendrack.lend_rack.model.domain.Book;
 import com.lendrack.lend_rack.model.domain.Collection;
 import com.lendrack.lend_rack.model.dto.CreateBookRequest;
+import com.lendrack.lend_rack.model.dto.UpdateBookRequest;
 import com.lendrack.lend_rack.service.BookService;
 import com.lendrack.lend_rack.service.CollectionService;
 
@@ -57,5 +59,43 @@ public class BookController {
         bookService.create(request);
         redirectAttributes.addFlashAttribute("message", "Book created successfully");
         return "redirect:/books/manage-books/all";
+    }
+
+    @GetMapping("manage-books/edit/{id}")
+    public String editBookForm(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            Book book = bookService.getById(id);
+            model.addAttribute("book", book);
+            List<Collection> collections = collectionService.getAllCollections();
+            model.addAttribute("collections", collections);
+            return "edit_book";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Book not found");
+            return "redirect:/books/manage-books/all";
+        }
+    }
+
+    @PostMapping("manage-books/edit/{id}")
+    public String updateBook(@PathVariable Long id, @ModelAttribute("book") UpdateBookRequest request, RedirectAttributes redirectAttributes) {
+        try {
+            bookService.update(id, request);
+            redirectAttributes.addFlashAttribute("message", "Book updated successfully");
+            return "redirect:/books/manage-books/all";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Failed to update book");
+            return "redirect:/books/manage-books/all";
+        }
+    }
+
+    @PostMapping("manage-books/delete/{id}")
+    public String deleteBook(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        try {
+            bookService.delete(id);
+            redirectAttributes.addFlashAttribute("message", "Book deleted successfully");
+            return "redirect:/books/manage-books/all";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Failed to delete book");
+            return "redirect:/books/manage-books/all";
+        }
     }
 }
