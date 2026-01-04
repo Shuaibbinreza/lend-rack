@@ -24,5 +24,4 @@ public class Book {
     private String description;
     private int page_count;
     private String authorName;
-
 }
