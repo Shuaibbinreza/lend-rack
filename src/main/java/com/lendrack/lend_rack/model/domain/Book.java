@@ -15,8 +15,8 @@ public class Book {
     private Long id;
     private String title;
     private String slug;
-    private Long author_id;
-    private Long publisher_id;
+    private String author;
+    private String publisher;
     private LocalDateTime addedAt;
     private Long category_id;
     private Long language_id;

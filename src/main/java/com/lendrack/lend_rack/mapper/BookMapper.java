@@ -46,11 +46,14 @@ public class BookMapper {
 
 
     public BookEntity udateRequestToEntity(UpdateBookRequest request, BookEntity bookEntity) {
-        bookEntity.setDescription(request.description());
         bookEntity.setTitle(request.title());
+        bookEntity.setAuthor(request.author());
+        bookEntity.setPublisher(request.publisher());
+        bookEntity.setCategory_id(request.category_id());
+        bookEntity.setLanguage_id(request.language_id());
         bookEntity.setCollection_id(request.collection_id());
-        // bookEntity.setAuthor_id(request.author_id());
-        // bookEntity.setPublisher_id(request.publisher_id()); // TODO: update when needed
+        bookEntity.setDescription(request.description());
+        bookEntity.setPage_count(request.page_count());
         return bookEntity;
     }
 }
