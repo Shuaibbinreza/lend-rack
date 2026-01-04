@@ -36,6 +36,7 @@ public class BookMapper {
         bookEntity.setPublisher(request.publisher());
         bookEntity.setCategory_id(request.category_id());
         bookEntity.setLanguage_id(request.language_id());
+        bookEntity.setCollection_id(request.collection_id());
         bookEntity.setDescription(request.description());
         bookEntity.setPage_count(request.page_count());
         bookEntity.setAddedAt(LocalDateTime.now());  // set current time

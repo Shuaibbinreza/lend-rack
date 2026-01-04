@@ -27,6 +27,11 @@ public class CollectionService {
         return collectionEntities.stream().map(collectionMapper::EntityToDomain).toList();
     }
 
+    public List<Collection> getAllCollections() {
+        List<CollectionEntity> collectionEntities = collectionRepository.findAll();
+        return collectionEntities.stream().map(collectionMapper::EntityToDomain).toList();
+    }
+
     public Long create(CreateCollectionRequest createCollectionRequest) {
         if (createCollectionRequest.created_by() == null) {
             throw new IllegalArgumentException("created_by must not be null");

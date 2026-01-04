@@ -14,8 +14,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import com.lendrack.lend_rack.model.domain.Book;
+import com.lendrack.lend_rack.model.domain.Collection;
 import com.lendrack.lend_rack.model.dto.CreateBookRequest;
 import com.lendrack.lend_rack.service.BookService;
+import com.lendrack.lend_rack.service.CollectionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/books")
 public class BookController {
     private final BookService bookService;
+    private final CollectionService collectionService;
 
     @GetMapping
     public String index(Model model) {
@@ -43,7 +46,9 @@ public class BookController {
 
     @GetMapping("manage-books/create")
     public String createBookForm(Model model) {
-        model.addAttribute("book", new CreateBookRequest("", "", null, null, null, "", 0));
+        model.addAttribute("book", new CreateBookRequest("", "", null, null, null, null, "", 0));
+        List<Collection> collections = collectionService.getAllCollections();
+        model.addAttribute("collections", collections);
         return "create_book";
     }
 
